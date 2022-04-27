@@ -11,6 +11,7 @@ class ToDoListViewModel : ViewModel() {
     private val getToDoListUseCase = GetToDoListUseCase(repository)
     private val removeToDoItemUseCase = RemoveToDoItemUseCase(repository)
     private val editToDoItemUseCase = EditToDoItemUseCase(repository)
+    private val moveToDoItemUseCase = MoveToDoItemUseCase(repository)
 
     val todoList = getToDoListUseCase.getToDoList()
 
@@ -20,6 +21,10 @@ class ToDoListViewModel : ViewModel() {
 
     fun changeEnabledState(toDoItem: ToDoItem) {
         editToDoItemUseCase.editToDoItemUseCase(toDoItem.copy(enabled = !toDoItem.enabled))
+    }
+
+    fun moveToDoItem(toDoItem: ToDoItem, moveBy: Int) {
+        moveToDoItemUseCase.moveToDoItem(toDoItem, moveBy)
     }
 
 }

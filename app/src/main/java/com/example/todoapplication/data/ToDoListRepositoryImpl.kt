@@ -5,16 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import com.example.todoapplication.domain.ToDoItem
 import com.example.todoapplication.domain.ToDoListRepository
 import java.lang.RuntimeException
+import java.util.*
+import kotlin.collections.ArrayList
 
 object ToDoListRepositoryImpl : ToDoListRepository {
 
     private val todoListLD = MutableLiveData<List<ToDoItem>>()
-    private val todoList = mutableListOf<ToDoItem>()
+    private var todoList = mutableListOf<ToDoItem>()
 
     init {
         for (i in 0..10) {
             val item = ToDoItem(
-                id = i,
                 name = "Name $i",
                 enabled = true
             )
@@ -23,20 +24,22 @@ object ToDoListRepositoryImpl : ToDoListRepository {
     }
 
     override fun addToDoItem(toDoItem: ToDoItem) {
+        fun add(toDoItem: ToDoItem) {
+            todoList.add(toDoItem)
+        }
         if (toDoItem.id == ToDoItem.UNDEFINED_ID || todoList.find { it.id == toDoItem.id } != null) {
-            todoList.add(getPosition(toDoItem.enabled), toDoItem.copy(id = todoList.size))
+            todoList.add(toDoItem.copy(id = todoList.size))
+        } else if (toDoItem.enabled) {
+            val index = todoList.indexOfFirst { !it.enabled }
+            if (index == -1) {
+                add(toDoItem)
+            } else {
+                todoList.add(index, toDoItem)
+            }
         } else {
-            todoList.add(getPosition(toDoItem.enabled), toDoItem)
+            add(toDoItem)
         }
         updateList()
-    }
-
-    private fun getPosition(toDoItemEnabled: Boolean): Int {
-        return if (toDoItemEnabled) {
-            0
-        } else {
-            todoList.size
-        }
     }
 
     override fun editToDoItem(newToDoItem: ToDoItem) {
@@ -56,6 +59,16 @@ object ToDoListRepositoryImpl : ToDoListRepository {
 
     override fun removeToDoItem(toDoItemId: Int) {
         todoList.remove(getToDoItem(toDoItemId))
+        updateList()
+    }
+
+    override fun moveToDoItem(toDoItem: ToDoItem, moveBy: Int) {
+        val oldIndex = todoList.indexOfFirst { it.id == toDoItem.id }
+        if (oldIndex == -1) return
+        val newIndex = oldIndex + moveBy
+        if (newIndex < 0 || newIndex >= todoList.size) return
+        todoList = ArrayList(todoList)
+        Collections.swap(todoList, oldIndex, newIndex)
         updateList()
     }
 

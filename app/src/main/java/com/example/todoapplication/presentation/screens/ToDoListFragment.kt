@@ -31,8 +31,16 @@ class ToDoListFragment : Fragment() {
 
         binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
         val adapter = ToDoListAdapter(object: ToDoActionListener {
-            override fun changeEnabledState(toDoItem: ToDoItem) {
+            override fun onChangeEnabledState(toDoItem: ToDoItem) {
                 viewModel.changeEnabledState(toDoItem)
+            }
+
+            override fun onToDoDelete(toDoItemId: Int) {
+                viewModel.removeToDoItem(toDoItemId)
+            }
+
+            override fun onToDoMove(toDoItem: ToDoItem, moveBy: Int) {
+                viewModel.moveToDoItem(toDoItem, moveBy)
             }
         })
 

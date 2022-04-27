@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.todoapplication.databinding.FragmentAddTodoItemBinding
+import com.example.todoapplication.domain.ToDoColors
 import com.example.todoapplication.domain.ToDoItem
 import com.example.todoapplication.presentation.viewmodel.AddToDoItemViewModel
 
@@ -21,6 +22,7 @@ class AddToDoItemFragment: Fragment() {
     ): View? {
         binding = FragmentAddTodoItemBinding.inflate(inflater, container, false)
         viewModel = AddToDoItemViewModel()
+
         binding.btAddTodo.setOnClickListener {
             addToDoItem()
         }

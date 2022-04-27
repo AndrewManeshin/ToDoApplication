@@ -1,9 +1,10 @@
 package com.example.todoapplication.presentation
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.CustomPopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapplication.R
@@ -12,7 +13,11 @@ import com.example.todoapplication.domain.ToDoItem
 
 interface ToDoActionListener {
 
-    fun changeEnabledState(toDoItem: ToDoItem)
+    fun onChangeEnabledState(toDoItem: ToDoItem)
+
+    fun onToDoDelete(toDoItemId: Int)
+
+    fun onToDoMove(toDoItem: ToDoItem, moveBy: Int)
 
 }
 
@@ -52,9 +57,12 @@ class ToDoListAdapter(
 
     override fun onClick(v: View) {
         val toDoItem = v.tag as ToDoItem
-        when(v.id) {
+        when (v.id) {
             R.id.bt_check_circle -> {
-                actionListener.changeEnabledState(toDoItem)
+                actionListener.onChangeEnabledState(toDoItem)
+            }
+            R.id.bt_more -> {
+                showPopupMenu(v)
             }
         }
     }
@@ -64,6 +72,7 @@ class ToDoListAdapter(
         val binding = ItemTodoBinding.inflate(inflater, parent, false)
 
         binding.btCheckCircle.setOnClickListener(this)
+        binding.btMore.setOnClickListener(this)
 
         return ToDoItemViewHolder(binding)
     }
@@ -73,15 +82,16 @@ class ToDoListAdapter(
         with(holder.binding) {
 
             btCheckCircle.tag = toDoItem
+            btMore.tag = toDoItem
 
 
             if (!toDoItem.enabled) {
                 cvTodoItem.cardElevation = 1f
-                llTodoItem.setBackgroundResource(R.color.item_color_disabled_1)
+                llTodoItem.setBackgroundResource(toDoItem.color.rgb)
                 btCheckCircle.setImageResource(R.drawable.ic_radio_button_disabled_24)
             } else {
                 cvTodoItem.cardElevation = 8f
-                llTodoItem.setBackgroundResource(R.color.item_color_enabled_1)
+                llTodoItem.setBackgroundResource(toDoItem.color.rgb)
                 btCheckCircle.setImageResource(R.drawable.ic_radio_button_enabled_24)
             }
             tvName.text = toDoItem.name
@@ -90,7 +100,50 @@ class ToDoListAdapter(
 
     override fun getItemCount() = toDoItems.size
 
+    private fun showPopupMenu(view: View) {
+        val popupMenu = CustomPopupMenu(view.context, view)
+        val context = view.context
+        val todoItem = view.tag as ToDoItem
+        val position = toDoItems.indexOfFirst { it.id == todoItem.id }
+
+        popupMenu.menu.add(0, ID_MOVE_UP, Menu.NONE, context.getString(R.string.move_up)).apply {
+            isEnabled = position > 0
+            setIcon(R.drawable.ic_up_24)
+        }
+        popupMenu.menu.add(0, ID_MOVE_DOWN, Menu.NONE, context.getString(R.string.move_down))
+            .apply {
+                isEnabled = position < toDoItems.size - 1
+                setIcon(R.drawable.ic_down_24)
+            }
+        popupMenu.menu.add(0, ID_REMOVE, Menu.NONE, context.getString(R.string.remove)).apply {
+            setIcon(R.drawable.ic_remove_24)
+        }
+
+        popupMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                ID_MOVE_UP -> {
+                    actionListener.onToDoMove(todoItem, -1)
+                }
+                ID_MOVE_DOWN -> {
+                    actionListener.onToDoMove(todoItem, 1)
+                }
+                ID_REMOVE -> {
+                    actionListener.onToDoDelete(todoItem.id)
+                }
+            }
+            return@setOnMenuItemClickListener true
+        }
+
+        popupMenu.show()
+    }
+
     class ToDoItemViewHolder(
         val binding: ItemTodoBinding
     ) : RecyclerView.ViewHolder(binding.root)
+
+    companion object {
+        private const val ID_MOVE_UP = 1
+        private const val ID_MOVE_DOWN = 2
+        private const val ID_REMOVE = 3
+    }
 }

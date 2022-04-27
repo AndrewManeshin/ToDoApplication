@@ -14,4 +14,6 @@ interface ToDoListRepository {
 
     fun removeToDoItem(toDoItemId: Int)
 
+    fun moveToDoItem(toDoItem: ToDoItem, moveBy: Int)
+
 }

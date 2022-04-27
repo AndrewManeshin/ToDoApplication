@@ -4,4 +4,7 @@
     <string name="choose_color">Выберите цвет</string>
     <string name="edit_text_hint">Имя задачи</string>
     <string name="add">Добавить</string>
+    <string name="move_up">Move Up</string>
+    <string name="move_down">Move Down</string>
+    <string name="remove">Remove</string>
 </resources>
