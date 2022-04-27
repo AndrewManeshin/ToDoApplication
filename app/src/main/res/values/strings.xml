@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ToDo Application</string>
+    <string name="add_new_todo_item">Add new ToDo item</string>
+    <string name="choose_color">Выберите цвет</string>
+    <string name="edit_text_hint">Имя задачи</string>
+    <string name="add">Добавить</string>
 </resources>

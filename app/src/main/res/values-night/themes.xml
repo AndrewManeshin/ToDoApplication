@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>
