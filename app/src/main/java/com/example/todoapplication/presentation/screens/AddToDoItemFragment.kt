@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.todoapplication.databinding.FragmentAddTodoItemBinding
-import com.example.todoapplication.domain.ToDoColors
 import com.example.todoapplication.domain.ToDoItem
 import com.example.todoapplication.presentation.viewmodel.AddToDoItemViewModel
 
@@ -24,15 +23,15 @@ class AddToDoItemFragment: Fragment() {
         viewModel = AddToDoItemViewModel()
 
         binding.btAddTodo.setOnClickListener {
-            addToDoItem()
+            if (binding.etTodoName.text.isNotBlank())
+                addToDoItem()
         }
 
         return binding.root
     }
 
     private fun addToDoItem() {
-        val name = binding.etTodoName.text.toString()
-        viewModel.addToDoItem(ToDoItem(name = name, enabled = true))
+        viewModel.addToDoItem(ToDoItem(name = binding.etTodoName.text.toString()))
         navigator().goBack()
     }
 

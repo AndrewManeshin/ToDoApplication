@@ -42,7 +42,6 @@ class ToDoItemsDiffCallBack(
     }
 }
 
-
 class ToDoListAdapter(
     private val actionListener: ToDoActionListener
 ) : RecyclerView.Adapter<ToDoListAdapter.ToDoItemViewHolder>(), View.OnClickListener {
@@ -84,15 +83,14 @@ class ToDoListAdapter(
             btCheckCircle.tag = toDoItem
             btMore.tag = toDoItem
 
-
-            if (!toDoItem.enabled) {
-                cvTodoItem.cardElevation = 1f
-                llTodoItem.setBackgroundResource(toDoItem.color.rgb)
-                btCheckCircle.setImageResource(R.drawable.ic_radio_button_disabled_24)
-            } else {
+            if (toDoItem.enabled) {
                 cvTodoItem.cardElevation = 8f
-                llTodoItem.setBackgroundResource(toDoItem.color.rgb)
+                llTodoItem.setBackgroundResource(R.drawable.ic_item_background_enabled)
                 btCheckCircle.setImageResource(R.drawable.ic_radio_button_enabled_24)
+            } else {
+                cvTodoItem.cardElevation = 1f
+                llTodoItem.setBackgroundResource(R.drawable.ic_item_background_disabled)
+                btCheckCircle.setImageResource(R.drawable.ic_radio_button_disabled_24)
             }
             tvName.text = toDoItem.name
         }

@@ -7,4 +7,6 @@
     <string name="move_up">Move Up</string>
     <string name="move_down">Move Down</string>
     <string name="remove">Remove</string>
+    <string name="default_name">Default name</string>
+    <string name="add_todo">Добавление задачи</string>
 </resources>

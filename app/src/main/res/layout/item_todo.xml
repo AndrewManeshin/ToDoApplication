@@ -17,7 +17,7 @@
         android:id="@+id/ll_todo_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_item_background_enabled_1"
+        android:background="@drawable/ic_item_background_enabled"
         android:orientation="horizontal"
         android:padding="16dp">
 
