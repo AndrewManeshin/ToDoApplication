@@ -83,7 +83,7 @@ class ToDoListAdapter(
             btCheckCircle.tag = toDoItem
             btMore.tag = toDoItem
 
-            if (toDoItem.enabled) {
+            if (toDoItem.isEnabled) {
                 cvTodoItem.cardElevation = 8f
                 llTodoItem.setBackgroundResource(R.drawable.ic_item_background_enabled)
                 btCheckCircle.setImageResource(R.drawable.ic_radio_button_enabled_24)

@@ -3,7 +3,7 @@ package com.example.todoapplication.domain
 data class ToDoItem(
     var id: Int = UNDEFINED_ID,
     val name: String = DEFAULT_NAME,
-    val enabled: Boolean = true,
+    val isEnabled: Boolean = true,
 ) {
     companion object {
         const val DEFAULT_NAME = "DEFAULT_NAME"

@@ -20,7 +20,7 @@ class ToDoListViewModel : ViewModel() {
     }
 
     fun changeEnabledState(toDoItem: ToDoItem) {
-        editToDoItemUseCase.editToDoItemUseCase(toDoItem.copy(enabled = !toDoItem.enabled))
+        editToDoItemUseCase.editToDoItemUseCase(toDoItem.copy(isEnabled = !toDoItem.isEnabled))
     }
 
     fun moveToDoItem(toDoItem: ToDoItem, moveBy: Int) {

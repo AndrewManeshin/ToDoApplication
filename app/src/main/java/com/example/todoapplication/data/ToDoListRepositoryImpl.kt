@@ -17,7 +17,7 @@ object ToDoListRepositoryImpl : ToDoListRepository {
         for (i in 0..10) {
             val item = ToDoItem(
                 name = "Name $i",
-                enabled = true
+                isEnabled = true
             )
             addToDoItem(item)
         }
@@ -29,8 +29,8 @@ object ToDoListRepositoryImpl : ToDoListRepository {
         }
         if (toDoItem.id == ToDoItem.UNDEFINED_ID || todoList.find { it.id == toDoItem.id } != null) {
             todoList.add(toDoItem.copy(id = todoList.size))
-        } else if (toDoItem.enabled) {
-            val index = todoList.indexOfFirst { !it.enabled }
+        } else if (toDoItem.isEnabled) {
+            val index = todoList.indexOfFirst { !it.isEnabled }
             if (index == -1) {
                 add(toDoItem)
             } else {

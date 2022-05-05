@@ -8,7 +8,9 @@
         <entry key="app/src/main/res/drawable/ic_circle_color_disabled_2.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_circle_color_enabled.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_edit_text_background.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/ic_item_background_disabled.xml" value="0.2785" />
         <entry key="app/src/main/res/drawable/ic_item_background_disabled_1.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/ic_item_background_enabled.xml" value="0.2785" />
         <entry key="app/src/main/res/drawable/ic_item_background_enabled_1.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_item_background_enabled_2.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_item_background_enabled_3.xml" value="0.33" />
