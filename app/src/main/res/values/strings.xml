@@ -9,4 +9,5 @@
     <string name="remove">Remove</string>
     <string name="default_name">Default name</string>
     <string name="add_todo">Добавление задачи</string>
+    <string name="id_not_found" formatted="false">TodoItem id %d not found</string>
 </resources>

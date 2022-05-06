@@ -12,7 +12,7 @@ class AppSQLiteHelper(
         val sql = applicationContext.assets.open("db_init.sql").bufferedReader().use {
             it.readText()
         }
-        sql.split(";")
+        sql.split(';')
             .filter { it.isNotBlank() }
             .forEach { db.execSQL(it) }
     }

@@ -20,13 +20,13 @@ class AddToDoItemFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddTodoItemBinding.inflate(inflater, container, false)
+
         viewModel = AddToDoItemViewModel()
 
         binding.btAddTodo.setOnClickListener {
             if (binding.etTodoName.text.isNotBlank())
                 addToDoItem()
         }
-
         return binding.root
     }
 

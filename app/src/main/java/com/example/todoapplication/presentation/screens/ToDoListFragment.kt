@@ -1,11 +1,11 @@
 package com.example.todoapplication.presentation.screens
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapplication.databinding.FragmentTodoListBinding
 import com.example.todoapplication.domain.ToDoItem
@@ -22,10 +22,11 @@ class ToDoListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTodoListBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this)[ToDoListViewModel::class.java]
+        viewModel = ToDoListViewModel()
+        viewModel.loadToDoList()
 
         binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
         val adapter = ToDoListAdapter(object: ToDoActionListener {
@@ -42,7 +43,7 @@ class ToDoListFragment : Fragment() {
             }
         })
 
-        viewModel.todoList.observe(viewLifecycleOwner) {
+        viewModel.toDoList.observe(viewLifecycleOwner) {
             adapter.toDoItems = it
         }
 

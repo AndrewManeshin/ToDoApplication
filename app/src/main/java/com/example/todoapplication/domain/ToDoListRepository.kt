@@ -12,6 +12,8 @@ interface ToDoListRepository {
 
     fun getToDoList(): LiveData<List<ToDoItem>>
 
+    fun updateToDoList()
+
     fun removeToDoItem(toDoItemId: Int)
 
     fun moveToDoItem(toDoItem: ToDoItem, moveBy: Int)

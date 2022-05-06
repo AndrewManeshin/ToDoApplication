@@ -2,7 +2,7 @@ package com.example.todoapplication.domain
 
 class EditToDoItemUseCase(private val toDoListRepository: ToDoListRepository) {
 
-    fun editToDoItemUseCase(newToDoItem: ToDoItem) {
+    fun editToDoItem(newToDoItem: ToDoItem) {
         toDoListRepository.editToDoItem(newToDoItem)
     }
 
