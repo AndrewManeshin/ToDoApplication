@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun addItem() {
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.fragmentContainer, AddToDoItemFragment())
+            .replace(R.id.fragmentContainer, AddToDoItemFragment.newInstance(null))
             .commit()
     }
 

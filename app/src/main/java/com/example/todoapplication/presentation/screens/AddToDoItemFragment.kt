@@ -53,7 +53,7 @@ class AddToDoItemFragment: Fragment() {
 
         private const val ARG_ITEM_ID = "ARG_ITEM_ID"
 
-        fun newInstance(itemId: Int): AddToDoItemFragment {
+        fun newInstance(itemId: Int?): AddToDoItemFragment {
             val fragment = AddToDoItemFragment()
             fragment.arguments = bundleOf(ARG_ITEM_ID to itemId)
             return fragment

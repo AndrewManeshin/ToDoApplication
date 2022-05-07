@@ -7,12 +7,10 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.core.content.contentValuesOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.todoapplication.R
 import com.example.todoapplication.data.sqlite.AppSQLiteContract.ToDoItemsTable
 import com.example.todoapplication.data.sqlite.AppSQLiteHelper
 import com.example.todoapplication.domain.ToDoItem
 import com.example.todoapplication.domain.ToDoListRepository
-import java.lang.RuntimeException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -51,7 +49,7 @@ object ToDoListRepositoryImpl : ToDoListRepository {
         updateToDoList()
     }
 
-    override fun getToDoItem(toDoItemId: Int): ToDoItem {
+    override fun getToDoItem(toDoItemId: Int): ToDoItem? {
         val cursor = database.query(
             ToDoItemsTable.TABLE_NAME,
             arrayOf(
@@ -65,9 +63,7 @@ object ToDoListRepositoryImpl : ToDoListRepository {
         )
         return cursor.use {
             if (cursor.count == 0) {
-                throw RuntimeException(
-                    applicationContext.getString(R.string.id_not_found, toDoItemId)
-                )
+                return null
             }
             cursor.moveToFirst()
             responseToToDoItem(cursor)

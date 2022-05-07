@@ -8,7 +8,7 @@ interface ToDoListRepository {
 
     fun editToDoItem(newToDoItem: ToDoItem)
 
-    fun getToDoItem(toDoItemId: Int): ToDoItem
+    fun getToDoItem(toDoItemId: Int): ToDoItem?
 
     fun getToDoList(): LiveData<List<ToDoItem>>
 

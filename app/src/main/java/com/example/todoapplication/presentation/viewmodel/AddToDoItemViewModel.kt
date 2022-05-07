@@ -16,7 +16,7 @@ class AddToDoItemViewModel: ViewModel() {
         addToDoItemUseCase.addToDoItem(toDoItem)
     }
 
-    fun getToDoItem(itemId: Int): ToDoItem {
+    fun getToDoItem(itemId: Int): ToDoItem? {
         return getToDoItemUseCase.getToDoItem(itemId)
     }
     
