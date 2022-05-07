@@ -19,6 +19,8 @@ interface ToDoActionListener {
 
     fun onToDoMove(toDoItem: ToDoItem, moveBy: Int)
 
+    fun onEditToDoItem(itemId: Int)
+
 }
 
 class ToDoItemsDiffCallBack(
@@ -108,13 +110,15 @@ class ToDoListAdapter(
             isEnabled = position > 0
             setIcon(R.drawable.ic_up_24)
         }
-        popupMenu.menu.add(0, ID_MOVE_DOWN, Menu.NONE, context.getString(R.string.move_down))
-            .apply {
+        popupMenu.menu.add(0, ID_MOVE_DOWN, Menu.NONE, context.getString(R.string.move_down)).apply {
                 isEnabled = position < toDoItems.size - 1
                 setIcon(R.drawable.ic_down_24)
             }
         popupMenu.menu.add(0, ID_REMOVE, Menu.NONE, context.getString(R.string.remove)).apply {
             setIcon(R.drawable.ic_remove_24)
+        }
+        popupMenu.menu.add(0, ID_EDIT, Menu.NONE, "Edit").apply {
+            setIcon(R.drawable.ic_edit_24)
         }
 
         popupMenu.setOnMenuItemClickListener {
@@ -127,6 +131,9 @@ class ToDoListAdapter(
                 }
                 ID_REMOVE -> {
                     actionListener.onToDoDelete(todoItem.id)
+                }
+                ID_EDIT -> {
+                    actionListener.onEditToDoItem(todoItem.id)
                 }
             }
             return@setOnMenuItemClickListener true
@@ -143,5 +150,6 @@ class ToDoListAdapter(
         private const val ID_MOVE_UP = 1
         private const val ID_MOVE_DOWN = 2
         private const val ID_REMOVE = 3
+        private const val ID_EDIT = 4
     }
 }

@@ -1,6 +1,5 @@
 package com.example.todoapplication.presentation.screens
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class ToDoListFragment : Fragment() {
         viewModel.loadToDoList()
 
         binding.rvTodoList.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = ToDoListAdapter(object: ToDoActionListener {
+        val adapter = ToDoListAdapter(object : ToDoActionListener {
             override fun onChangeEnabledState(toDoItem: ToDoItem) {
                 viewModel.changeEnabledState(toDoItem)
             }
@@ -40,6 +39,10 @@ class ToDoListFragment : Fragment() {
 
             override fun onToDoMove(toDoItem: ToDoItem, moveBy: Int) {
                 viewModel.moveToDoItem(toDoItem, moveBy)
+            }
+
+            override fun onEditToDoItem(itemId: Int) {
+                navigator().editItem(itemId)
             }
         })
 

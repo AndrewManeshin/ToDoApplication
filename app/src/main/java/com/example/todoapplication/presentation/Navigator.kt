@@ -6,4 +6,6 @@ interface Navigator {
 
     fun goBack()
 
+    fun editItem(itemId: Int)
+
 }
