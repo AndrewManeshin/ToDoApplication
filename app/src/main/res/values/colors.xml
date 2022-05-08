@@ -16,4 +16,6 @@
 
     <color name="item_color_disabled_1">#b6e6a2</color>
 
+    <color name="statusBarBackground">#AF299F82</color>
+
 </resources>

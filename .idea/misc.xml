@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/add_button.xml" value="0.121" />
+        <entry key="app/src/main/res/drawable/ic_add_button.xml" value="0.121" />
+        <entry key="app/src/main/res/drawable/ic_add_button_background.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/ic_background.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/ic_circle_color_disabled.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_circle_color_disabled_2.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_circle_color_enabled.xml" value="0.33" />
@@ -21,6 +25,7 @@
         <entry key="app/src/main/res/drawable/ic_remove_24.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_up_24.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_add_todo_item.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_todo_list.xml" value="0.321875" />
         <entry key="app/src/main/res/layout/item_todo.xml" value="0.5" />
       </map>
     </option>
